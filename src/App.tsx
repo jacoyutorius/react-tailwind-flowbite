@@ -90,13 +90,13 @@ function ModalForm(modalOpen: boolean, toggleModal: any ) {
   )
 }
 
+function Cards() {
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(v => createCard())
+}
+
 function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const toggleModal = () => { setModalOpen(!modalOpen) }
-  // const toggleModal = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   console.log(event);
-  //   setModalOpen(!modalOpen)
-  // };
 
   return (
     <div className="App">
@@ -149,13 +149,8 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-        { createCard() }
-        { createCard() }
-        { createCard() }
-        { createCard() }
-        { createCard() }
-        { createCard() }
+      <div className="grid grid-cols-1 mb-20 md:grid-cols-3 lg:grid-cols-4">
+        { Cards() }
       </div>
 
       <Footer container={true} className="fixed bottom-0 left-0 z-20">
