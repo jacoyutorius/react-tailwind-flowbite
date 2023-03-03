@@ -17,7 +17,7 @@ function createCard() {
   )
 }
 
-function ModalBody() {
+function ModalFormBody() {
   return (
     <form className="flex flex-col gap-4">
       <div>
@@ -47,6 +47,19 @@ function ModalBody() {
           required={true}
         />
       </div>
+      <div>
+        <div className="mb-2 block">
+          <Label
+            htmlFor="large"
+            value="Large input"
+          />
+        </div>
+        <TextInput
+          id="large"
+          type="text"
+          sizing="lg"
+        />
+      </div>
       <div className="flex items-center gap-2">
         <Checkbox id="remember" />
         <Label htmlFor="remember">Remember me</Label>
@@ -58,37 +71,36 @@ function ModalBody() {
   )
 }
 
-function App() {
-  const [modalOpen, setModalOpen] = useState(false)
-  const toggleModal = () => { setModalOpen(!modalOpen) }
-
+function ModalForm(modalOpen: boolean, toggleModal: any ) {
   return (
-    <div className="App">
-      <React.Fragment>
+    <React.Fragment>
         <Modal
           show={modalOpen}
-          onClose={toggleModal}
+          onClose={ toggleModal }
           size="4xl"
         >
           <Modal.Header>
             Terms of Service
           </Modal.Header>
           <Modal.Body>
-            { ModalBody() }
+            { ModalFormBody() }
           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={toggleModal} >
-              I accept
-            </Button>
-            <Button
-              color="gray"
-              onClick={toggleModal}
-            >
-              Decline
-            </Button>
-          </Modal.Footer>
         </Modal>
       </React.Fragment>
+  )
+}
+
+function App() {
+  const [modalOpen, setModalOpen] = useState(false)
+  const toggleModal = () => { setModalOpen(!modalOpen) }
+  // const toggleModal = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   console.log(event);
+  //   setModalOpen(!modalOpen)
+  // };
+
+  return (
+    <div className="App">
+      { ModalForm(modalOpen, toggleModal) }
 
       <Navbar
         fluid={true}
@@ -107,7 +119,7 @@ function App() {
         <div className="flex gap-x-1 md:order-2">
           <a href="/" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Login</a>
        
-          <Button onClick={toggleModal}>
+          <Button onClick={ toggleModal }>
             Show Modal
           </Button>
           <Button>
