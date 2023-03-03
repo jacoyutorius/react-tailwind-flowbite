@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { Navbar, Button, Card, Footer } from "flowbite-react"
+import { Navbar, Button, Modal, Card, Footer } from "flowbite-react"
 
 function createCard() {
   return (
@@ -18,8 +18,44 @@ function createCard() {
 }
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false)
+  const toggleModal = () => { setModalOpen(!modalOpen) }
+
   return (
     <div className="App">
+      <React.Fragment>
+        <Modal
+          show={modalOpen}
+          onClose={toggleModal}
+          size="4xl"
+        >
+          <Modal.Header>
+            Terms of Service
+          </Modal.Header>
+          <Modal.Body>
+            <div className="space-y-6">
+              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+              </p>
+              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+              </p>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={toggleModal} >
+              I accept
+            </Button>
+            <Button
+              color="gray"
+              onClick={toggleModal}
+            >
+              Decline
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </React.Fragment>
+
       <Navbar
         fluid={true}
         rounded={true}
@@ -34,8 +70,12 @@ function App() {
             Flowbite
           </span>
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        <div className="flex gap-x-1 md:order-2">
           <a href="/" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Login</a>
+       
+          <Button onClick={toggleModal}>
+            Show Modal
+          </Button>
           <Button>
             Get started
           </Button>
