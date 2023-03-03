@@ -103,6 +103,7 @@ function App() {
       { ModalForm(modalOpen, toggleModal) }
 
       <Navbar
+        className="sticky top-0"
         fluid={true}
         rounded={true}
       >
