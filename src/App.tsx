@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Navbar, Button, Modal, Label, TextInput, Checkbox, Card, Footer } from "flowbite-react"
+import { Navbar, Button, Modal, Label, TextInput, Checkbox, Card, Pagination, Footer } from "flowbite-react"
 
 function createCard() {
   return (
@@ -150,8 +150,17 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
 
-      <div className="grid grid-cols-1 mb-20 md:grid-cols-3 lg:grid-cols-4">
-        { Cards() }
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+        {Cards()}
+      </div>
+
+      <div className="grid grid-cols-1 mb-20 ml-2 md:grid-cols-3 lg:grid-cols-4">
+        <Pagination
+          currentPage={1}
+          layout="navigation"
+          totalPages={100}
+          showIcons={true}
+          onPageChange={ () => { "do nothing" }} />
       </div>
 
       <Footer container={true} className="fixed bottom-0 left-0 z-20">
