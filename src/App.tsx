@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import { Button, Modal, Label, TextInput, Checkbox, Card, Pagination, Footer } from "flowbite-react"
 
-import { NavbarComponent } from './components/Navbar/index';
+import { NavbarComponent } from './components/Navbar';
+import { FooterComponent } from './components/Footer';
 
 function createCard() {
   return (
@@ -119,27 +120,7 @@ function App() {
           onPageChange={ () => { "do nothing" }} />
       </div>
 
-      <Footer container={true} className="fixed bottom-0 left-0 z-20">
-        <Footer.Copyright
-          href="#"
-          by="Flowbite™"
-          year={2022}
-        />
-        <Footer.LinkGroup>
-          <Footer.Link href="#">
-            About
-          </Footer.Link>
-          <Footer.Link href="#">
-            Privacy Policy
-          </Footer.Link>
-          <Footer.Link href="#">
-            Licensing
-          </Footer.Link>
-          <Footer.Link href="#">
-            Contact
-          </Footer.Link>
-        </Footer.LinkGroup>
-      </Footer>
+      <FooterComponent />
     </div>
   );
 }
