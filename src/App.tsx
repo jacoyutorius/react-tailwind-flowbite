@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Card, Pagination, TextInput } from "flowbite-react"
+import { Card, Pagination } from "flowbite-react"
 
 import { NavbarComponent } from './components/Navbar';
-// import { CreateFormComponent } from './components/CreateForm';
 import { ModalComponent } from './components/Modal';
 import { FooterComponent } from './components/Footer';
 
 function createCard(index: number) {
   return (
     <div key={index} className="max-w-none p-2">
-      <Card>
+      <Card href=''>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           Noteworthy technology acquisitions 2021
         </h5>
@@ -34,7 +33,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const toggleModal = () => { setModalOpen(!modalOpen) }
 
-  const [formData, setFormData] = useState(initialFormState)
+  // const [formData, setFormData] = useState(initialFormState)
 
   return (
     <div className="App">

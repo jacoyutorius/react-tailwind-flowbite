@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Label, TextInput, Button } from "flowbite-react"
+import { Label, TextInput, Button, Textarea } from "flowbite-react"
 
 const initialFormState = {
   email: '',
@@ -65,10 +65,8 @@ export const CreateFormComponent = (): JSX.Element => {
               value="Large input"
             />
           </div>
-          <TextInput
+          <Textarea
             id="large"
-            type="text"
-            sizing="lg"
             value={ formData.content }
             onChange={e => setFormData({
               ...formData,
@@ -76,10 +74,6 @@ export const CreateFormComponent = (): JSX.Element => {
             }) }
           />
         </div>
-        {/* <div className="flex items-center gap-2">
-          <Checkbox id="remember" />
-          <Label htmlFor="remember">Remember me</Label>
-        </div> */}
         <Button type="submit" onClick={ saveDataEvent }>
           Submit
         </Button>
