@@ -46,14 +46,7 @@ function App() {
       <NavbarComponent onClick={ toggleModal } />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-        {/* {Cards()} */}
-
-        <label>{ formData.content }</label>
-        <TextInput type="text" value={formData.content} onChange={e => setFormData({
-          ...formData,
-          content: e.target.value
-        })}
-        />
+        {Cards()}
       </div>
 
       <div className="grid grid-cols-1 mb-20 ml-2 md:grid-cols-3 lg:grid-cols-4">
