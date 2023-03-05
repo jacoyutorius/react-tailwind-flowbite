@@ -1,77 +1,89 @@
-import { Modal, Label, TextInput, Checkbox, Button } from "flowbite-react"
+import { useState } from "react"
+import { Label, TextInput, Button } from "flowbite-react"
 
-function ModalFormBody() {
-  return (
-    <form className="flex flex-col gap-4">
-      <div>
-        <div className="mb-2 block">
-          <Label
-            htmlFor="email1"
-            value="Your email"
-          />
-        </div>
-        <TextInput
-          id="email1"
-          type="email"
-          placeholder="name@flowbite.com"
-          required={true}
-        />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label
-            htmlFor="password1"
-            value="Your password"
-          />
-        </div>
-        <TextInput
-          id="password1"
-          type="password"
-          required={true}
-        />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label
-            htmlFor="large"
-            value="Large input"
-          />
-        </div>
-        <TextInput
-          id="large"
-          type="text"
-          sizing="lg"
-        />
-      </div>
-      <div className="flex items-center gap-2">
-        <Checkbox id="remember" />
-        <Label htmlFor="remember">Remember me</Label>
-      </div>
-      <Button type="submit">
-        Submit
-      </Button>
-    </form>
-  )
+const initialFormState = {
+  email: '',
+  password: '',
+  content: ''
 }
 
-export type CreateFormComponentProps = {
-  modalOpen: boolean,
-  onClose: () => void
-}
+export const CreateFormComponent = (): JSX.Element => {
+  const [formData, setFormData] = useState(initialFormState)
 
-export const CreateFormComponent = (props: CreateFormComponentProps): JSX.Element => { 
+  const saveDataEvent = async (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault()
+
+    if (!formData.email || !formData.password || !formData.content) return
+    console.log(formData)
+
+    alert("data saved")
+    setFormData(initialFormState)
+  }
+  
   return (
-    <Modal
-      show={ props.modalOpen }
-      onClose={ props.onClose }
-      size="4xl"
-    >
-      <Modal.Header>
-        Terms of Service
-      </Modal.Header>
-      <Modal.Body>
-        { ModalFormBody() }
-      </Modal.Body>
-    </Modal>
+    <>
+      <form className="flex flex-col gap-4">
+        <div>
+          <div className="mb-2 block">
+            <Label
+              htmlFor="email1"
+              value="Your email"
+            />
+          </div>
+          <TextInput
+            id="email1"
+            type="email"
+            placeholder="name@flowbite.com"
+            required={true}
+            onChange={e => setFormData({
+              ...formData,
+              email: e.target.value
+            }) }
+          />
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label
+              htmlFor="password1"
+              value="Your password"
+            />
+          </div>
+          <TextInput
+            id="password1"
+            type="password"
+            required={true}
+            onChange={e => setFormData({
+              ...formData,
+              "password": e.target.value
+            }) }
+          />
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label
+              htmlFor="large"
+              value="Large input"
+            />
+          </div>
+          <TextInput
+            id="large"
+            type="text"
+            sizing="lg"
+            value={ formData.content }
+            onChange={e => setFormData({
+              ...formData,
+              content: e.target.value
+            }) }
+          />
+        </div>
+        {/* <div className="flex items-center gap-2">
+          <Checkbox id="remember" />
+          <Label htmlFor="remember">Remember me</Label>
+        </div> */}
+        <Button type="submit" onClick={ saveDataEvent }>
+          Submit
+        </Button>
+      </form>
+    </>
   )
 }

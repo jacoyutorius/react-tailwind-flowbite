@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Card, Pagination } from "flowbite-react"
+import { Card, Pagination, TextInput } from "flowbite-react"
 
 import { NavbarComponent } from './components/Navbar';
-import { CreateFormComponent } from './components/CreateForm';
+// import { CreateFormComponent } from './components/CreateForm';
+import { ModalComponent } from './components/Modal';
 import { FooterComponent } from './components/Footer';
 
-function createCard() {
+function createCard(index: number) {
   return (
-    <div className="max-w-none p-2">
+    <div key={index} className="max-w-none p-2">
       <Card>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           Noteworthy technology acquisitions 2021
@@ -22,16 +23,22 @@ function createCard() {
 }
 
 function Cards() {
-  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(v => createCard())
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map((v, i) => createCard(i))
+}
+
+const initialFormState = {
+  content: ""
 }
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const toggleModal = () => { setModalOpen(!modalOpen) }
 
+  const [formData, setFormData] = useState(initialFormState)
+
   return (
     <div className="App">
-      <CreateFormComponent
+      <ModalComponent
         modalOpen={ modalOpen }
         onClose={ toggleModal }
       />
@@ -39,7 +46,14 @@ function App() {
       <NavbarComponent onClick={ toggleModal } />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-        {Cards()}
+        {/* {Cards()} */}
+
+        <label>{ formData.content }</label>
+        <TextInput type="text" value={formData.content} onChange={e => setFormData({
+          ...formData,
+          content: e.target.value
+        })}
+        />
       </div>
 
       <div className="grid grid-cols-1 mb-20 ml-2 md:grid-cols-3 lg:grid-cols-4">
