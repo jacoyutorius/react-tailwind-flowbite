@@ -1,18 +1,22 @@
 import { Card } from "flowbite-react"
 
 export type CardComponentProps = {
-  key: number
+  eventName: string,
+  description: string,
+  startedOn: string,
+  url: string
 }
 
 export const CardComponent = (props: CardComponentProps):JSX.Element => {
   return (
-    <div key={props.key} className="max-w-none p-2">
+    <div className="max-w-none p-2">
       <Card href='' className=""> 
-        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Noteworthy technology acquisitions 2021
+        <p>{ props.startedOn }</p>
+        <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          { props.eventName }
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
-          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+          {props.description}
         </p>
       </Card>
     </div>
