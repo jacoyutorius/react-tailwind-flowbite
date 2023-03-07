@@ -4,6 +4,7 @@ import { Pagination } from "flowbite-react"
 
 import { NavbarComponent } from './components/Navbar';
 import { ModalComponent } from './components/Modal';
+import { CreateFormComponent } from "./components/CreateForm"
 import { CardListComponent } from './components/CardList';
 import { FooterComponent } from './components/Footer';
 
@@ -15,8 +16,9 @@ function App() {
     <div className="App">
       <ModalComponent
         modalOpen={ modalOpen }
-        onClose={ toggleModal }
-      />
+        onClose={toggleModal}>
+        <CreateFormComponent />
+      </ModalComponent>
 
       <NavbarComponent onClick={ toggleModal } />
 

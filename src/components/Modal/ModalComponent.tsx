@@ -1,9 +1,9 @@
 import { Modal } from "flowbite-react"
-import { CreateFormComponent } from "../CreateForm"
 
 export type ModalComponentProps = {
   modalOpen: boolean,
-  onClose: () => void
+  onClose: () => void,
+  children: React.ReactNode
 }
 
 export const ModalComponent = (props: ModalComponentProps): JSX.Element => {  
@@ -17,7 +17,7 @@ export const ModalComponent = (props: ModalComponentProps): JSX.Element => {
         Terms of Service
       </Modal.Header>
       <Modal.Body>
-        <CreateFormComponent />
+        { props.children }
       </Modal.Body>
     </Modal>
   )
