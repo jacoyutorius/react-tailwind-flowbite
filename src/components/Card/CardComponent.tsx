@@ -1,16 +1,22 @@
-import { Card } from "flowbite-react"
+import { Card, Badge } from "flowbite-react"
 
 export type CardComponentProps = {
   eventName: string,
   description: string,
   startedOn: string,
-  url: string
+  url: string,
+  category: string
 }
 
 export const CardComponent = (props: CardComponentProps):JSX.Element => {
   return (
     <div className="max-w-none p-2">
       <Card href='' className=""> 
+        <div className="flex flex-wrap gap-2">
+          <Badge color="info">
+            { props.category }
+          </Badge>
+        </div>
         <p>{ props.startedOn }</p>
         <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           { props.eventName }

@@ -1182,6 +1182,7 @@ const data = [
 export const CardListComponent = (): JSX.Element => {
   const cards = data.map((v, i) => {
     return <CardComponent key={i}
+      category={v.Category}
       eventName={v.EventName || v.OpenedAt}
       description={v.Description}
       startedOn={v.StartedOn}
