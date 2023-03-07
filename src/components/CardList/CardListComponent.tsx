@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { CardComponent } from "../Card/CardComponent"
 import { ModalComponent } from "../Modal/ModalComponent"
-import { ContentFormComponent } from "../ContentForm/ContentFormComponent"
+import { ContentFormComponent, ContentFormComponentProps } from "../ContentForm/ContentFormComponent"
 
 const data = [
   {
@@ -1182,9 +1182,32 @@ const data = [
   }
 ]
 
+const initialCardContent: ContentFormComponentProps = {
+  index: 0,
+  no: 0,
+  category: '',
+  organizer: ''
+}
+
 export const CardListComponent = (): JSX.Element => {
   const [contentModalOpen, setContentModalOpen] = useState(false)
-  const toggleContentModal = () => { setContentModalOpen(!contentModalOpen) }
+  const [selectedCardContent, setSelectedCardContent] = useState(initialCardContent)
+
+  // NOTE: カードがクリックされたときに、選択されたカードのindexより表示対象のデータを抽出して
+  //  selectedCardContentにセットする。
+  const openContentModal = (index: number) => {
+    console.info(index)
+
+    const row = data[index]
+    setSelectedCardContent({
+      index: index,
+      no: row.No,
+      category: row.Category,
+      organizer: row.Organizer
+    })
+    setContentModalOpen(true)
+  }
+  const closeContentModal = () => { setContentModalOpen(false) }
 
   const cards = data.map((v, i) => {
     return <CardComponent key={i}
@@ -1193,15 +1216,15 @@ export const CardListComponent = (): JSX.Element => {
       description={v.Description}
       startedOn={v.StartedOn}
       url={v.Url}
-      onClick={ toggleContentModal }></CardComponent>
+      onClick={ () => { openContentModal(i) } }></CardComponent>
   })
 
   return (<>
     {/* コンテンツモーダル */}
     <ModalComponent
       modalOpen={ contentModalOpen }
-      onClose={ toggleContentModal }>
-      <ContentFormComponent />
+      onClose={ closeContentModal }>
+      <ContentFormComponent {...selectedCardContent} />
     </ModalComponent>
     
     {/* カード */}
