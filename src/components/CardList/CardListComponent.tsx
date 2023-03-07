@@ -1,4 +1,7 @@
+import { useState } from "react"
 import { CardComponent } from "../Card/CardComponent"
+import { ModalComponent } from "../Modal/ModalComponent"
+import { ContentFormComponent } from "../ContentForm/ContentFormComponent"
 
 const data = [
   {
@@ -1179,11 +1182,10 @@ const data = [
   }
 ]
 
-export type CardListComponentProps = {
-  onCardClicked: any
-}
+export const CardListComponent = (): JSX.Element => {
+  const [contentModalOpen, setContentModalOpen] = useState(false)
+  const toggleContentModal = () => { setContentModalOpen(!contentModalOpen) }
 
-export const CardListComponent = ({ onCardClicked }: CardListComponentProps): JSX.Element => {
   const cards = data.map((v, i) => {
     return <CardComponent key={i}
       category={v.Category}
@@ -1191,10 +1193,18 @@ export const CardListComponent = ({ onCardClicked }: CardListComponentProps): JS
       description={v.Description}
       startedOn={v.StartedOn}
       url={v.Url}
-      onClick={ onCardClicked }></CardComponent>
+      onClick={ toggleContentModal }></CardComponent>
   })
 
   return (<>
+    {/* コンテンツモーダル */}
+    <ModalComponent
+      modalOpen={ contentModalOpen }
+      onClose={ toggleContentModal }>
+      <ContentFormComponent />
+    </ModalComponent>
+    
+    {/* カード */}
     { cards }
   </>)
 }
