@@ -9,21 +9,33 @@ import { CardListComponent } from './components/CardList';
 import { FooterComponent } from './components/Footer';
 
 function App() {
-  const [modalOpen, setModalOpen] = useState(false)
-  const toggleModal = () => { setModalOpen(!modalOpen) }
+  const [createModalOpen, setCreateModalOpen] = useState(false)
+  const toggleCreateModal = () => { setCreateModalOpen(!createModalOpen) }
+
+  const [contentModalOpen, setContentModalOpen] = useState(false)
+  const toggleContentModal = () => { setContentModalOpen(!contentModalOpen) }
 
   return (
     <div className="App">
+      {/* 登録フォームモーダル */}
       <ModalComponent
-        modalOpen={ modalOpen }
-        onClose={toggleModal}>
+        modalOpen={ createModalOpen }
+        onClose={ toggleCreateModal }>
         <CreateFormComponent />
       </ModalComponent>
 
-      <NavbarComponent onClick={ toggleModal } />
+      {/* コンテンツモーダル */}
+      <ModalComponent
+        modalOpen={ contentModalOpen }
+        onClose={ toggleContentModal }>
+        { "test" }
+      </ModalComponent>
+
+      <NavbarComponent onClick={ toggleCreateModal } />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-        <CardListComponent />
+        <CardListComponent
+         onCardClicked={ toggleContentModal } />
       </div>
 
       <div className="grid grid-cols-1 mb-20 ml-2 md:grid-cols-3 lg:grid-cols-4">

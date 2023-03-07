@@ -5,13 +5,14 @@ export type CardComponentProps = {
   description: string,
   startedOn: string,
   url: string,
-  category: string
+  category: string,
+  onClick: any
 }
 
 export const CardComponent = (props: CardComponentProps):JSX.Element => {
   return (
     <div className="max-w-none p-2">
-      <Card href='' className=""> 
+      <Card className="" onClick={ props.onClick }> 
         <div className="flex flex-wrap gap-2">
           <Badge color="info">
             { props.category }

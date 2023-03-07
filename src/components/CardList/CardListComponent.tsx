@@ -1179,14 +1179,19 @@ const data = [
   }
 ]
 
-export const CardListComponent = (): JSX.Element => {
+export type CardListComponentProps = {
+  onCardClicked: any
+}
+
+export const CardListComponent = ({ onCardClicked }: CardListComponentProps): JSX.Element => {
   const cards = data.map((v, i) => {
     return <CardComponent key={i}
       category={v.Category}
       eventName={v.EventName || v.OpenedAt}
       description={v.Description}
       startedOn={v.StartedOn}
-      url={v.Url}></CardComponent>
+      url={v.Url}
+      onClick={ onCardClicked }></CardComponent>
   })
 
   return (<>
