@@ -1184,9 +1184,46 @@ const data = [
 
 const initialCardContent: ContentFormComponentProps = {
   index: 0,
+  updatedAt: '',
+  longitude: '',
+  latitude: '',
+  capacity: '',
+  place: '',
+  eventNameKana: '',
+  startedAtNote: '',
+  startedAt: '',
+  childInformation: '',
+  closingOn: '',
+  openedAt: '',
+  contact: '',
+  priceDetail: '',
+  importedAt: '',
+  facilityNo: '',
+  endedAt: '',
+  price: '',
+  tel: '',
+  formula: '',
+  eventName: '',
+  key: '',
+  code: 0,
+  note: '',
   no: 0,
-  category: '',
-  organizer: ''
+  city: '',
+  parking: '',
+  startedOn: '',
+  eventNameEn: '',
+  description: '',
+  endedOn: '',
+  url: '',
+  prefecture: '',
+  howToJoin: '',
+  access: '',
+  telExtention: '',
+  district: '',
+  closingAt: '',
+  organizer: '',
+  placeAddress: '',
+  category: ''
 }
 
 export const CardListComponent = (): JSX.Element => {
@@ -1198,10 +1235,17 @@ export const CardListComponent = (): JSX.Element => {
   const openContentModal = (index: number) => {
     const row = data[index]
     setSelectedCardContent({
+      ...initialCardContent,
       index: index,
       no: row.No,
       category: row.Category,
-      organizer: row.Organizer
+      organizer: row.Organizer,
+      eventName: row.EventName,
+      place: row.Place,
+      placeAddress: row.PlaceAddress,
+      description: row.Description,
+      url: row.Url,
+      tel: row.Tel
     })
     setContentModalOpen(true)
   }
