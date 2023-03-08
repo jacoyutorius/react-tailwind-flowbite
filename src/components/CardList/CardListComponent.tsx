@@ -1194,10 +1194,8 @@ export const CardListComponent = (): JSX.Element => {
   const [selectedCardContent, setSelectedCardContent] = useState(initialCardContent)
 
   // NOTE: カードがクリックされたときに、選択されたカードのindexより表示対象のデータを抽出して
-  //  selectedCardContentにセットする。
+  //  モーダル内のContentFormComponentに値をセットしてからモーダルを開く。
   const openContentModal = (index: number) => {
-    console.info(index)
-
     const row = data[index]
     setSelectedCardContent({
       index: index,
