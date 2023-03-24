@@ -12,7 +12,7 @@ export type CardComponentProps = {
 export const CardComponent = (props: CardComponentProps):JSX.Element => {
   return (
     <div className="max-w-none p-2">
-      <Card>
+      <Card className="h-full">
         <div className="flex flex-wrap gap-2">
           <Badge color="info">
             { props.category }
@@ -22,7 +22,7 @@ export const CardComponent = (props: CardComponentProps):JSX.Element => {
         <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           <a href="#" onClick={ props.onClick }>{props.eventName}</a>
         </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
+        <p className="font-normal text-sm text-gray-700 dark:text-gray-400">
           {props.description}
         </p>
       </Card>
