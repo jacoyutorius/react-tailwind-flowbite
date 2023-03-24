@@ -12,9 +12,6 @@ function App() {
   const [createModalOpen, setCreateModalOpen] = useState(false)
   const toggleCreateModal = () => { setCreateModalOpen(!createModalOpen) }
 
-  // const [contentModalOpen, setContentModalOpen] = useState(false)
-  // const toggleContentModal = () => { setContentModalOpen(!contentModalOpen) }
-
   return (
     <div className="App">
       {/* 登録フォームモーダル */}
@@ -24,14 +21,7 @@ function App() {
         <CreateFormComponent />
       </ModalComponent>
 
-      {/* コンテンツモーダル */}
-      {/* <ModalComponent
-        modalOpen={ contentModalOpen }
-        onClose={ toggleContentModal }>
-        { "test" }
-      </ModalComponent> */}
-
-      <NavbarComponent onClick={ toggleCreateModal } />
+      <NavbarComponent onClick={toggleCreateModal} />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         <CardListComponent />
