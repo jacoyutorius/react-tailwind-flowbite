@@ -5,6 +5,22 @@ export type NavbarComponentProps = {
   onClick: () => void
 }
 
+const months = [
+  "2023/04",
+  "2023/05",
+  "2023/06",
+  "2023/07",
+  "2023/08",
+  "2023/09",
+  "2023/10",
+]
+
+const dropdownItems = ():any => {
+  return months.map(month => {
+    return <Dropdown.Item onClick={() => { alert(month) }}>{ month }</Dropdown.Item>  
+  })
+}
+
 export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
   return (
     <Navbar
@@ -36,8 +52,7 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
         <Navbar.Collapse>
           <Navbar.Link
             href="/"
-            active={true}
-          >
+            active={true}>
             Home
           </Navbar.Link>
           <Navbar.Link href="/">
@@ -51,12 +66,8 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
             arrowIcon={true}
             inline={true}
             floatingArrow={true}>
-              <Dropdown.Item
-                onClick={ () => { alert("hogehoge") } }>
-                2023/04
-              </Dropdown.Item>
-            </Dropdown>
-
+            { dropdownItems() }
+          </Dropdown>
         </Navbar.Collapse>
       </Navbar>
   )

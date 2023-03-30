@@ -18,7 +18,7 @@ const Dropdown = forwardRef(({
       inline={inline}
       label={label}
       theme={{ inlineWrapper: "flex items-center text-gray-700" }}
-      // ref={ref}
+      ref={ref}
       {...otherProps}>
       {children}
     </FlowbiteDropdown>
@@ -44,7 +44,5 @@ const DropdownItem = (
 }
 
 export const DropdownComponent = Object.assign(Dropdown, {
-  // Divider: DropdownDivider,
-  // Header: DropdownHeader,
   Item: DropdownItem
 })
