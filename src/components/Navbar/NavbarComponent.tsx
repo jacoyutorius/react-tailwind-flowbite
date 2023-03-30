@@ -1,4 +1,5 @@
 import { Navbar, Button } from "flowbite-react"
+import { DropdownComponent as Dropdown } from "../Dropdown"
 
 export type NavbarComponentProps = {
   onClick: () => void
@@ -45,12 +46,17 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
           <Navbar.Link href="/">
             Services
           </Navbar.Link>
-          <Navbar.Link href="/">
-            Pricing
-          </Navbar.Link>
-          <Navbar.Link href="/">
-            Contact
-          </Navbar.Link>
+          <Dropdown
+            label="Select Month"
+            arrowIcon={true}
+            inline={true}
+            floatingArrow={true}>
+              <Dropdown.Item
+                onClick={ () => { alert("hogehoge") } }>
+                2023/04
+              </Dropdown.Item>
+            </Dropdown>
+
         </Navbar.Collapse>
       </Navbar>
   )
