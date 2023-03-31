@@ -8,12 +8,21 @@ import { CreateFormComponent } from "./components/CreateForm"
 import { CardListComponent } from './components/CardList';
 import { FooterComponent } from './components/Footer';
 
+import { useContext } from "react"
+export const SelectedMonthContext = React.createContext({month: "202304"})
+
 function App() {
   const [createModalOpen, setCreateModalOpen] = useState(false)
   const toggleCreateModal = () => { setCreateModalOpen(!createModalOpen) }
 
+
+
   return (
     <div className="App">
+      <SelectedMonthContext.Provider value={ {month: "202304"} }>
+
+      </SelectedMonthContext.Provider>
+
       {/* 登録フォームモーダル */}
       <ModalComponent
         modalOpen={ createModalOpen }

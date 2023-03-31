@@ -1,6 +1,8 @@
 import { Navbar, Button, Dropdown } from "flowbite-react"
 import { useApi } from "../../hooks/useApi"
 
+import React, { useState, useContext } from "react"
+
 export type NavbarComponentProps = {
   onClick: () => void
 }
@@ -30,13 +32,20 @@ const useApiCall = ({month}:useApiCallType): any => {
   console.log(month, list)
 }
 
-const dropdownItems = ():any => {
+const dropdownItems = (setMonth: any):any => {
   return months.map(month => {
-    return <Dropdown.Item onClick={() => { useApiCall({month}) }}>{ month }</Dropdown.Item>  
+    return <Dropdown.Item onClick={() => {
+      setMonth(month)
+      useApiCall({ month })
+    }}>{month}</Dropdown.Item>  
   })
 }
 
+const selectedMonthContext = React.createContext({month: "202304"})
+
 export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
+  const [month, setMonth] = useState('202303');
+  
   return (
     <Navbar
         className="sticky top-0"
@@ -76,12 +85,15 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
           <Navbar.Link href="/">
             Services
           </Navbar.Link>
+           <Navbar.Link href="/">
+            selected: { month }
+          </Navbar.Link>
           <Dropdown
             label="Select Month"
             inline={true}
             theme={{ inlineWrapper: "flex items-center text-gray-700" }}
             dismissOnClick={true}>
-            { dropdownItems() }
+            { dropdownItems(setMonth) }
           </Dropdown>
         </Navbar.Collapse>
       </Navbar>
