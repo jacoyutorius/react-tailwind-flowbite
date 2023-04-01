@@ -9,13 +9,16 @@ import { CardListComponent } from './components/CardList';
 import { FooterComponent } from './components/Footer';
 
 import { SelectedMonthContext } from "./SelectedMonthContext"
+import { EventListContext } from './EventListContext';
 
 function App() {
   const [createModalOpen, setCreateModalOpen] = useState(false)
   const toggleCreateModal = () => { setCreateModalOpen(!createModalOpen) }
   const [month, setMonth] = useState("202304")
+  const [eventList, setEventList] = useState([])
 
   return (
+    <EventListContext.Provider value={ {eventList, setEventList} }>
     <SelectedMonthContext.Provider value={ {month, setMonth} }>
       <div className="App">
         {/* 登録フォームモーダル */}
@@ -42,7 +45,8 @@ function App() {
 
         <FooterComponent />
       </div>
-    </SelectedMonthContext.Provider>
+      </SelectedMonthContext.Provider>
+      </EventListContext.Provider>
   );
 }
 
