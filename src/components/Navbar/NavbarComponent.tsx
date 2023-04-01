@@ -1,8 +1,7 @@
+import React, { useState } from "react"
 import { Navbar, Button, Dropdown } from "flowbite-react"
 import { useApi } from "../../hooks/useApi"
-import React, { useState } from "react"
-
-import { MonthContextType, SelectedMonthContext } from "../../SelectedMonthContext"
+import { SelectedMonthContext } from "../../SelectedMonthContext"
 
 export type NavbarComponentProps = {
   onClick: () => void
@@ -46,7 +45,7 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
   const [month, setMonth] = useState("202304")
 
   return (
-    <SelectedMonthContext.Provider value={ [month, setMonth] }>
+    <SelectedMonthContext.Provider value={ {month, setMonth} }>
       <Navbar
         className="sticky top-0"
         fluid={true}
