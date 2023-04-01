@@ -2,8 +2,8 @@ import { useState, useContext } from "react"
 import { CardComponent } from "../Card/CardComponent"
 import { ModalComponent } from "../Modal/ModalComponent"
 import { ContentFormComponent, ContentFormComponentProps } from "../ContentForm/ContentFormComponent"
-import { SelectedMonthContext } from "../../SelectedMonthContext"
-import { EventListContext } from "../../EventListContext"
+import { SelectedMonthContext } from "../../hooks/SelectedMonthContext"
+import { EventListContext } from "../../hooks/EventListContext"
 
 const initialCardContent: ContentFormComponentProps = {
   index: 0,

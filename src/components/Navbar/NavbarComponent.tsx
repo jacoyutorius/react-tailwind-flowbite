@@ -1,8 +1,8 @@
 import React, { useContext } from "react"
 import { Navbar, Button, Dropdown } from "flowbite-react"
 import { useApi } from "../../hooks/useApi"
-import { SelectedMonthContext } from "../../SelectedMonthContext"
-import { EventListContext } from "../../EventListContext"
+import { SelectedMonthContext } from "../../hooks/SelectedMonthContext"
+import { EventListContext } from "../../hooks/EventListContext"
 
 export type NavbarComponentProps = {
   onClick: () => void

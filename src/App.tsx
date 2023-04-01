@@ -8,8 +8,8 @@ import { CreateFormComponent } from "./components/CreateForm"
 import { CardListComponent } from './components/CardList';
 import { FooterComponent } from './components/Footer';
 
-import { SelectedMonthContext } from "./SelectedMonthContext"
-import { EventListContext } from './EventListContext';
+import { SelectedMonthContext } from "./hooks/SelectedMonthContext"
+import { EventListContext } from './hooks/EventListContext';
 
 const NoCard = () => {
   return (
