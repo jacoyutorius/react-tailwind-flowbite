@@ -45,8 +45,8 @@ function App() {
 
         <FooterComponent />
       </div>
-      </SelectedMonthContext.Provider>
-      </EventListContext.Provider>
+    </SelectedMonthContext.Provider>
+    </EventListContext.Provider>
   );
 }
 
