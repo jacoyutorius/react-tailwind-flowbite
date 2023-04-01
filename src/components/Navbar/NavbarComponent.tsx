@@ -1,6 +1,8 @@
 import { Navbar, Button, Dropdown } from "flowbite-react"
 import { useApi } from "../../hooks/useApi"
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
+
+import { MonthContextType, SelectedMonthContext } from "../../SelectedMonthContext"
 
 export type NavbarComponentProps = {
   onClick: () => void
@@ -31,7 +33,7 @@ const useApiCall = ({month}:useApiCallType): any => {
   console.log(month, list)
 }
 
-const dropdownItems = (setMonth):any => {
+const dropdownItems = (setMonth:any):any => {
   return months.map(month => {
     return <Dropdown.Item onClick={() => {
       setMonth(month)
@@ -39,8 +41,6 @@ const dropdownItems = (setMonth):any => {
     }}>{month}</Dropdown.Item>  
   })
 }
-
-export const SelectedMonthContext = React.createContext(["202304", () => {}]);
 
 export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
   const [month, setMonth] = useState("202304")
