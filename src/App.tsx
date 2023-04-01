@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Pagination } from "flowbite-react"
+import { Pagination, Toast } from "flowbite-react"
 
 import { NavbarComponent } from './components/Navbar';
 import { ModalComponent } from './components/Modal';
@@ -10,6 +10,19 @@ import { FooterComponent } from './components/Footer';
 
 import { SelectedMonthContext } from "./SelectedMonthContext"
 import { EventListContext } from './EventListContext';
+
+const NoCard = () => {
+  return (
+    <div className="space-x-4 divide-x divide-gray-200 dark:divide-gray-700">
+      <Toast>
+        {/* <FaTelegramPlane className="h-5 w-5 text-blue-600 dark:text-blue-500" /> */}
+        <div className="pl-4 text-sm font-normal">
+          イベント情報が登録されていません。
+        </div>
+      </Toast>
+    </div>
+  );
+}
 
 function App() {
   const [createModalOpen, setCreateModalOpen] = useState(false)
@@ -30,18 +43,25 @@ function App() {
 
         <NavbarComponent onClick={toggleCreateModal} />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-          <CardListComponent />
-        </div>
-
-        <div className="grid grid-cols-1 mb-20 ml-2 md:grid-cols-3 lg:grid-cols-4">
-          <Pagination
-            currentPage={1}
-            layout="navigation"
-            totalPages={100}
-            showIcons={true}
-            onPageChange={ () => { "do nothing" }} />
-        </div>
+        { eventList.length === 0 &&
+          <div className="flex justify-center my-32">
+            <NoCard /> 
+          </div>}
+          
+        { eventList.length > 0 &&
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+              <CardListComponent />
+            </div>
+            <div className="grid grid-cols-1 mb-20 ml-2 md:grid-cols-3 lg:grid-cols-4">
+              <Pagination
+                currentPage={1}
+                layout="navigation"
+                totalPages={100}
+                showIcons={true}
+                onPageChange={ () => { "do nothing" }} />
+           </div>
+        </>}
 
         <FooterComponent />
       </div>

@@ -24,28 +24,25 @@ const months = [
   "202310",
 ]
 
-type useApiCallType = {
-  month: string
-}
+const dropdownItems = (setMonth: any, setEventList: any): any => {
+  const ClickEvent = (month:string) => {
+    setMonth(month)
+    const { list } = useApi(month);
+    setEventList(list)
+  }
 
-const useApiCall = ({month}:useApiCallType): any => {
-  const { list } = useApi(month);
-  return list;
-}
-
-const dropdownItems = (setMonth:any, setEventList:any):any => {
   return months.map(month => {
-    return <Dropdown.Item onClick={() => {
-      setMonth(month)
-      const list = useApiCall({ month })
-      setEventList(list)
-    }}>{month}</Dropdown.Item>  
+    return (
+      <Dropdown.Item onClick={() => ClickEvent(month)}>
+        {month}
+      </Dropdown.Item>  
+    )
   })
 }
 
 export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
   const { month, setMonth } = useContext(SelectedMonthContext)
-  const { eventList, setEventList } = useContext(EventListContext)
+  const { setEventList } = useContext(EventListContext)
 
   return (
     <Navbar
@@ -91,7 +88,6 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
           inline={true}
           theme={{ inlineWrapper: "flex items-center text-gray-700" }}
           dismissOnClick={true}>
-          {/* { dropdownItems(setMonth) } */}
           { dropdownItems(setMonth, setEventList) }
         </Dropdown>
       </Navbar.Collapse>
