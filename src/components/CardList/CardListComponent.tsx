@@ -2,9 +2,7 @@ import { useState, useContext } from "react"
 import { CardComponent } from "../Card/CardComponent"
 import { ModalComponent } from "../Modal/ModalComponent"
 import { ContentFormComponent, ContentFormComponentProps } from "../ContentForm/ContentFormComponent"
-
-// import { SelectedMonthContext } from "../../SelectedMonthContext"
-// import useMonth from "../../useMonth"
+import { SelectedMonthContext } from "../../SelectedMonthContext"
 
 const data = [
   {
@@ -1260,6 +1258,7 @@ const initialCardContent: ContentFormComponentProps = {
 export const CardListComponent = (): JSX.Element => {
   const [contentModalOpen, setContentModalOpen] = useState(false)
   const [selectedCardContent, setSelectedCardContent] = useState(initialCardContent)
+  const {month, setMonth} = useContext(SelectedMonthContext)
 
   // NOTE: カードがクリックされたときに、選択されたカードのindexより表示対象のデータを抽出して
   //  モーダル内のContentFormComponentに値をセットしてからモーダルを開く。
@@ -1282,11 +1281,9 @@ export const CardListComponent = (): JSX.Element => {
   }
   const closeContentModal = () => { setContentModalOpen(false) }
 
-  // const [month, setMonth] = useContext(SelectedMonthContext);
-  // console.log(month)
-  // const monthData = data.filter(row => row.StartMonth === month)
+  const monthData = data.filter(row => row.StartMonth === month)
 
-  const cards = data.map((v, i) => {
+  const cards = monthData.map((v, i) => {
     return <CardComponent key={i}
       category={v.Category}
       eventName={v.EventName || v.OpenedAt}
@@ -1304,9 +1301,9 @@ export const CardListComponent = (): JSX.Element => {
       <ContentFormComponent {...selectedCardContent} />
     </ModalComponent>
     
-    {/* <SelectedMonthContext.Provider value={ [{month: "202304"}, setMonth] }> */}
+    <SelectedMonthContext.Provider value={{ month, setMonth }}>
       {/* カード */}
       { cards }
-    {/* </SelectedMonthContext.Provider> */}
+    </SelectedMonthContext.Provider>
   </>)
 }
