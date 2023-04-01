@@ -1,7 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { CardComponent } from "../Card/CardComponent"
 import { ModalComponent } from "../Modal/ModalComponent"
 import { ContentFormComponent, ContentFormComponentProps } from "../ContentForm/ContentFormComponent"
+
+// import { SelectedMonthContext } from "../../SelectedMonthContext"
+// import useMonth from "../../useMonth"
 
 const data = [
   {
@@ -44,7 +47,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "茶室「松韻亭」",
     "PlaceAddress": "浜松市中区鹿谷町11-4",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202302"
   },
   {
     "UpdatedAt": "",
@@ -86,7 +90,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区住吉四丁目23-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202304"
   },
   {
     "UpdatedAt": "",
@@ -128,7 +133,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "公益財団法人浜松市文化振興財団",
     "PlaceAddress": "浜松市中区中央三丁目9-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202311"
   },
   {
     "UpdatedAt": "",
@@ -170,7 +176,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区元城町103-2",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202211"
   },
   {
     "UpdatedAt": "",
@@ -212,7 +219,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区松城町100-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202301"
   },
   {
     "UpdatedAt": "",
@@ -254,7 +262,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区住吉四丁目23-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202301"
   },
   {
     "UpdatedAt": "",
@@ -296,7 +305,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202210"
   },
   {
     "UpdatedAt": "",
@@ -338,7 +348,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "木下惠介記念館(旧浜松銀行協会)",
     "PlaceAddress": "浜松市中区栄町3-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202304"
   },
     {
     "UpdatedAt": "",
@@ -380,7 +391,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202303"
   },
   {
     "UpdatedAt": "",
@@ -422,7 +434,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202211"
   },
   {
     "UpdatedAt": "",
@@ -464,7 +477,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202302"
   },
   {
     "UpdatedAt": "2022-10-26",
@@ -506,7 +520,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202211"
   },
   {
     "UpdatedAt": "",
@@ -548,7 +563,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区中央三丁目9-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202303"
   },
   {
     "UpdatedAt": "",
@@ -590,7 +606,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区幸三丁目3-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202303"
   },
   {
     "UpdatedAt": "",
@@ -632,7 +649,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202212"
   },
   {
     "UpdatedAt": "",
@@ -674,7 +692,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "あいホールすずめの学校吹奏楽部 あいホール共催",
     "PlaceAddress": "浜松市中区板屋町111-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202305"
   },
   {
     "UpdatedAt": "",
@@ -716,7 +735,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区中央三丁目9-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202303"
   },
   {
     "UpdatedAt": "",
@@ -758,7 +778,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "木下惠介記念館(旧浜松銀行協会)",
     "PlaceAddress": "浜松市中区栄町3-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202209"
   },
   {
     "UpdatedAt": "",
@@ -800,7 +821,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "浜松市文化振興財団",
     "PlaceAddress": "浜松市中区中央三丁目9-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202301"
   },
   {
     "UpdatedAt": "",
@@ -842,7 +864,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202301"
   },
   {
     "UpdatedAt": "2022-10-26",
@@ -884,7 +907,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202211"
   },
   {
     "UpdatedAt": "",
@@ -926,7 +950,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202210"
   },
   {
     "UpdatedAt": "",
@@ -968,7 +993,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "浜松市鴨江アートセンター(指定管理者:一般社団法人浜松創造都市協議会・東海ビル管理グループ)",
     "PlaceAddress": "浜松市中区鴨江町1番地",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202212"
   },
   {
     "UpdatedAt": "2022-10-26",
@@ -1010,7 +1036,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "木下惠介記念館(旧浜松銀行協会)",
     "PlaceAddress": "浜松市中区栄町3-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202212"
   },
   {
     "UpdatedAt": "",
@@ -1052,7 +1079,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "浜松市",
     "PlaceAddress": "浜松市中区松城町100-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202212"
   },
   {
     "UpdatedAt": "",
@@ -1094,7 +1122,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区早馬町2-1",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202212"
   },
   {
     "UpdatedAt": "",
@@ -1136,7 +1165,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区北寺島町256-3",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202301"
   },
   {
     "UpdatedAt": "",
@@ -1178,7 +1208,8 @@ const data = [
     "ClosingAt": "",
     "Organizer": "浜松市鴨江アートセンター(指定管理者:一般社団法人浜松創造都市協議会・東海ビル管理グループ)",
     "PlaceAddress": "浜松市中区鴨江町1番地",
-    "Category": "イベント"
+    "Category": "イベント",
+    "StartMonth": "202302"
   }
 ]
 
@@ -1251,6 +1282,10 @@ export const CardListComponent = (): JSX.Element => {
   }
   const closeContentModal = () => { setContentModalOpen(false) }
 
+  // const [month, setMonth] = useContext(SelectedMonthContext);
+  // console.log(month)
+  // const monthData = data.filter(row => row.StartMonth === month)
+
   const cards = data.map((v, i) => {
     return <CardComponent key={i}
       category={v.Category}
@@ -1269,7 +1304,9 @@ export const CardListComponent = (): JSX.Element => {
       <ContentFormComponent {...selectedCardContent} />
     </ModalComponent>
     
-    {/* カード */}
-    { cards }
+    {/* <SelectedMonthContext.Provider value={ [{month: "202304"}, setMonth] }> */}
+      {/* カード */}
+      { cards }
+    {/* </SelectedMonthContext.Provider> */}
   </>)
 }

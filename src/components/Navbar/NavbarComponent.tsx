@@ -1,7 +1,6 @@
 import { Navbar, Button, Dropdown } from "flowbite-react"
 import { useApi } from "../../hooks/useApi"
-
-import React, { useState, useContext } from "react"
+import React, { useContext, useState } from "react"
 
 export type NavbarComponentProps = {
   onClick: () => void
@@ -32,7 +31,7 @@ const useApiCall = ({month}:useApiCallType): any => {
   console.log(month, list)
 }
 
-const dropdownItems = (setMonth: any):any => {
+const dropdownItems = (setMonth):any => {
   return months.map(month => {
     return <Dropdown.Item onClick={() => {
       setMonth(month)
@@ -41,13 +40,14 @@ const dropdownItems = (setMonth: any):any => {
   })
 }
 
-const selectedMonthContext = React.createContext({month: "202304"})
+export const SelectedMonthContext = React.createContext(["202304", () => {}]);
 
 export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
-  const [month, setMonth] = useState('202303');
-  
+  const [month, setMonth] = useState("202304")
+
   return (
-    <Navbar
+    <SelectedMonthContext.Provider value={ [month, setMonth] }>
+      <Navbar
         className="sticky top-0"
         fluid={true}
         rounded={true}
@@ -85,11 +85,8 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
           <Navbar.Link href="/">
             Services
           </Navbar.Link>
-           <Navbar.Link href="/">
-            selected: { month }
-          </Navbar.Link>
           <Dropdown
-            label="Select Month"
+            label={month}
             inline={true}
             theme={{ inlineWrapper: "flex items-center text-gray-700" }}
             dismissOnClick={true}>
@@ -97,5 +94,6 @@ export const NavbarComponent = (props: NavbarComponentProps): JSX.Element => {
           </Dropdown>
         </Navbar.Collapse>
       </Navbar>
+    </SelectedMonthContext.Provider>
   )
 }
