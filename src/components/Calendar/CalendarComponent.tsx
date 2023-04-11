@@ -55,7 +55,8 @@ export const CalendarComponent = ({ calendar }: CalendarComponentProps): JSX.Ele
               events = ret[dayYYYYMMDD].map((row: any) => {
                 return {
                   eventName: row.EventName,
-                  url: row.url
+                  url: row.Url,
+                  category: row.Category
                 }
               })
             }

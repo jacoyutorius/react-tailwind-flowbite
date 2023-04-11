@@ -555,7 +555,7 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区中央三丁目9-1",
-    "Category": "イベント",
+    "Category": "コンサート",
     "StartMonth": "202303"
   },
   {
@@ -727,7 +727,7 @@ const data = [
     "ClosingAt": "",
     "Organizer": "",
     "PlaceAddress": "浜松市中区中央三丁目9-1",
-    "Category": "イベント",
+    "Category": "コンサート",
     "StartMonth": "202303"
   },
   {

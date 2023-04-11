@@ -29,7 +29,6 @@ const NoCard = () => {
 }
 
 function getMonth(year:number, month:number) {
-  // const year = dayjs().year()
   const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day()
   let currentMonthCount = 0 - firstDayOfTheMonth
   const daysMatrix = new Array(6).fill([]).map(() => {
@@ -42,21 +41,6 @@ function getMonth(year:number, month:number) {
   return daysMatrix
 }
 
-function getMonthDays(year: number, month: number) {
-  const firstDay = new Date(year, month)
-  const lastDay = new Date(year, month + 1, 0)
-
-  let list = []
-
-  let next = firstDay;
-  while (next.getTime() !== lastDay.getTime()) {
-    list.push(next)
-    next = new Date(next.getFullYear(), next.getMonth(), next.getDate() + 1)
-  }
-
-  return list
-}
-
 function App() {
   const [createModalOpen, setCreateModalOpen] = useState(false)
   const toggleCreateModal = () => { setCreateModalOpen(!createModalOpen) }
@@ -64,27 +48,6 @@ function App() {
   const [eventList, setEventList] = useState<any[]>([])
 
   const calendar = getMonth(Number(month.substring(0, 4)), Number(month.substring(4, 6)) - 1)
-
-  
-  // const [eventListByDay, setEventListByDay] = useState({})
-
-  // useEffect(() => {
-  //   const curYear = Number(month.substring(0, 4))
-  //   const curMonth = Number(month.substring(5, 7)) - 1
-  //   const monthDays = getMonthDays(curYear, curMonth)
-  //   const list: any = {}
-
-  //   monthDays.forEach(day => {
-  //     const yyyymmdd = dayjs(day).format("YYYY-MM-DD")
-  //     let filtered = eventList.filter(event => event?.StartedOn === yyyymmdd)
-  //     list[yyyymmdd] = filtered
-  //   })
-
-  //   setEventListByDay(list)
-  // }, [month, eventList])
-  
-  // console.log({eventListByDay})
-
   
   return (
     <EventListContext.Provider value={ {eventList, setEventList} }>
