@@ -22,8 +22,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test": "npx playwright test",
+    "report": "npx playwright show-report",
+    "regression": "npx reg-suit run"
   },
   "eslintConfig": {
     "extends": [
