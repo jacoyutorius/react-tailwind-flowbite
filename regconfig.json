@@ -15,7 +15,7 @@
       "clientId": "MzM2MTAxNbAw1E/MLcjJTKvULcmvTMqv0Dc2NzE0MDey1M9KTM6vLC3JL8osLQYA"
     },
     "reg-publish-s3-plugin": {
-      "bucketName": "jacoyutorius-playwright-regsuit"
+      "bucketName": "jacoyutorius-visual-regression-bucket"
     }
   }
 }
