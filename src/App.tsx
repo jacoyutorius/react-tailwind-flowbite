@@ -62,10 +62,10 @@ function App() {
 
         <NavbarComponent onClick={toggleCreateModal} />
 
-        {/* { eventList.length === 0 &&
+        { eventList.length === 0 &&
           <div className="flex justify-center my-32">
             <NoCard /> 
-          </div>} */}
+          </div>}
 
 
         <div className="h-screen flex flex-col mb-20 md:mx-2">
